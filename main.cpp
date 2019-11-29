@@ -1,9 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <sstream>
-#include <algorithm>
-#include <iterator>
 #define numbersOfData 6334
 
 int NumberOfNumbers[49];
@@ -26,13 +23,10 @@ int main()
 {
 
     OdczytPliku();
-    //WyswietlDane();
+    WyswietlDane();
+    ZliczanieWystapien();
     OdczytDanych();
-
-    //plik.tellg(); //funkcja odczytuj¹ca w jakiej pozycji w plkiku jest znacznik
-    //plik.seekg(0); //Funkcja ustawiaj¹ca znacznik na pocz¹tku pliku
-    //plik.seekg(0, plik.end); //Funkcja ustawiaj¹ca znacznik na koñcu pliku
-
+    
     return 0;
 }
 
@@ -56,7 +50,7 @@ void OdczytPliku()
             for (int j=0; j<6; j++)
             {
                 plik >> Line[i].Numbers[j];
-                plik.ignore(1,','); // Ignoruje max 10 znaków do napotkania odpowiedniego znaku
+                plik.ignore(1,','); 
             }
 
             i++;
@@ -86,11 +80,6 @@ void WyswietlDane()
 
 void ZliczanieWystapien()
 {
-    for (int i=0; i<49; i++)
-    {
-        NumberOfNumbers[i]=0;
-    }
-
     for (int i=0; i<numbersOfData; i++)
     {
         for (int j=0; j<6; j++)
@@ -100,10 +89,10 @@ void ZliczanieWystapien()
                 if (Line[i].Numbers[j]==k+1)
                 {
                     NumberOfNumbers[k]++;
-                    break;
+                    continue;
                 }
                 else
-                    break;
+                    continue;
             }
         }
     }
